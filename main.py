@@ -1,7 +1,17 @@
 import numpy as np
 import cv2
+import os
 
-cap = cv2.VideoCapture(0) #number of webcam being used, 0 = first cam (only one we have)
+
+try:
+    if not os.path.exists('images'):
+        os.makedirs('images')
+except OSError:
+    print("THERE IS AN ERROR")
+    
+
+
+cap = cv2.VideoCapture(0) #uses cam0
 
 while True:
     ret, frame = cap.read() #returns the frame (image in form of num py array), ret tells us if it worked
@@ -14,3 +24,5 @@ while True:
 
 cap.release # release the camera resource
 cv2.destroyAllWindows()
+
+rm.os()
