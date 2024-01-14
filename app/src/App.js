@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import startVideo from './components/startVideo';
 import capturePicture from './components/picture';
@@ -10,13 +9,12 @@ function App() {
     <form action="">
         <h1>ChatBox</h1>
         <div class = "output-box">
-            <input type="text" placeholder="..." required />
+            <input type="text" placeholder="..." readOnly />
         </div>
         <div class = "input-box">
-            <input type="text" placeholder="Enter your message" required />
+            <input type="text" placeholder="Enter your message" required onKeyDown = "getInput(event)"/>
             <startVideo />
             <capturePicture />
-            <getInput />
         </div>
     </form>
     </div>
