@@ -3,6 +3,8 @@ import cv2
 from deepface import DeepFace
 import matplotlib.pyplot as plt
 
+
+
 def emotion_capture(frame): #will return dominant emotion type
 
     # identify face from image, prep for deepface model
@@ -16,13 +18,11 @@ def emotion_capture(frame): #will return dominant emotion type
         cv2.FONT_HERSHEY_COMPLEX, 0.9, (255,255,0),2 )
         cv2.rectangle(frame, (x,y) , (x + width, y+ height), ( 255,255,0),2 )
     # Check the response
-        
     cv2.imshow("Computer Vision",frame) #title = frame, displays frame
     
 
 cap = cv2.VideoCapture(0) #number of webcam being used, 0 = first cam (only one we have)
 while True:
-    
     ret, frame = cap.read() #returns the frame (image in form of num py array), ret tells us if it worked
     emotion_capture(frame) # capture the emotion displayed in the frame
     if cv2.waitKey(1) == ord('q'): #if key pressed is the end frame, exit
@@ -31,4 +31,4 @@ while True:
 
 cap.release # release the camera resource
 cv2.destroyAllWindows()
- 
+
