@@ -2,6 +2,8 @@ import numpy as np
 import cv2
 from deepface import DeepFace
 import matplotlib.pyplot as plt
+
+
 tallys ={'angry': 0,
         'disgust': 0,
         'fear': 0,
@@ -27,21 +29,35 @@ def emotion_capture(frame): #will return dominant emotion type
 
     cv2.imshow("Computer Vision",frame) #title = frame, displays frame
     return emotions
+
+def compute_dominant_emotion():
+    max=0
+    dominant_emote=''
+    keys=tallys.keys() # array of all keys
+    for key in keys:
+        if tallys[key] > max: # see if value > max
+            max=tallys[key]
+            dominant_emote=key
+    return dominant_emote
     
 
-cap = cv2.VideoCapture(0) #number of webcam being used, 0 = first cam (only one we have)
-while True:
-    ret, frame = cap.read() #returns the frame (image in form of num py array), ret tells us if it worked
-    emotes= emotion_capture(frame) # capture the emotion displayed in the frame
+            
+ 
+def CVLoop():
+    cap = cv2.VideoCapture(0) #number of webcam being used, 0 = first cam (only one we have)
+    while True:
+        ret, frame = cap.read() #returns the frame (image in form of num py array), ret tells us if it worked
+        emotes= emotion_capture(frame) # capture the emotion displayed in the frame
 
-    for emote in emotes:
-        tallys[emote]+=1
-    print(tallys['happy'])
-    
-    if cv2.waitKey(1) == ord('q'): #if key pressed is the end frame, exit
-        break
+        for emote in emotes:
+            tallys[emote]+=1
+        
+        if cv2.waitKey(1) == ord('q'): #if key pressed is the end frame, exit
+            break
+        
+
+    cap.release # release the camera resource
+    cv2.destroyAllWindows()
 
 
-cap.release # release the camera resource
-cv2.destroyAllWindows()
-
+CVLoop()
