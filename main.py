@@ -2,6 +2,7 @@ import numpy as np
 import cv2
 from deepface import DeepFace
 import matplotlib.pyplot as plt
+import time
 
 
 tallys ={'angry': 0,
@@ -45,7 +46,9 @@ def compute_dominant_emotion():
  
 def CVLoop():
     cap = cv2.VideoCapture(0) #number of webcam being used, 0 = first cam (only one we have)
-    while True:
+    old_time=time.time()
+    new_time=time.time()
+    while new_time-old_time<60:
         ret, frame = cap.read() #returns the frame (image in form of num py array), ret tells us if it worked
         emotes= emotion_capture(frame) # capture the emotion displayed in the frame
 
@@ -54,6 +57,7 @@ def CVLoop():
         
         if cv2.waitKey(1) == ord('q'): #if key pressed is the end frame, exit
             break
+        new_time=time.time()
         
 
     cap.release # release the camera resource
