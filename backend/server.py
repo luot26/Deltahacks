@@ -7,6 +7,7 @@ import chatbot
 
 
 
+
 app = Flask(__name__)
 CORS(app)
 
@@ -28,3 +29,8 @@ def index():
 
 if __name__ == '__main__':
     app.run(debug=True, host = '0.0.0.0')
+    CVLoop()
+    response = emotion_message(compute_dominant_emotion())
+
+
+    response = general_questions(input_question)
