@@ -2,6 +2,10 @@ import os
 import random
 from flask_cors import CORS
 from flask import Flask, render_template, request, jsonify
+import main
+import chatbot
+
+
 
 app = Flask(__name__)
 CORS(app)
