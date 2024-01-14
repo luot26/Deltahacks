@@ -40,3 +40,4 @@ while image_count < 5:
 
 cap.release # release the camera resource
 cv2.destroyAllWindows()
+emotion = "happy"

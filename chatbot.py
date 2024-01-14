@@ -1,44 +1,64 @@
 import cohere
-from main import emotion
-api_token = "sd2Smgp5jfEcah7lt0PzqkIeTt1G5dEjFgCcc60x"
+import os
+from dotenv import load_dotenv
 
-co = cohere.Client(api_token)
-
+load_dotenv()
+cohere_token = os.getenv('cohere_token')
 chat_history = []
+co = cohere.Client(cohere_token)
 
-message = "please respond as if you are a friend to the following messages, respond how a person would respond in real life if I am a person and I look " + emotion
-
-response = co.chat(
+def emotion_message(emotion):
+    message = "please respond as if you are a friend conversation style; respond how a person would respond in real life if I am a person and I look " + emotion
+    
+    response = co.chat(
         message,
         model = "command",
-        temperature = 0.9
+        temperature = 0.9,
+        
     )
-response = response.text
-user_message = {"user_name": "User", "text": message}
-bot_message = {"user_name": "Chabot", "text": response}
+    response = response.text
+    user_message = {"user_name": "User", "text": message}
+    bot_message = {"user_name": "Chatbot", "text": response}
+        
+    chat_history.append(user_message)
+    chat_history.append(bot_message)
+
+    message = "talk as if you see someone " + emotion
+    response = co.chat(
+        message,
+        model = "command",
+        temperature = 0.9,
+        
+    )
+    response = response.text
+    user_message = {"user_name": "User", "text": message}
+    bot_message = {"user_name": "Chatbot", "text": response}
+        
+    chat_history.append(user_message)
+    chat_history.append(bot_message)
     
-chat_history.append(user_message)
-chat_history.append(bot_message)
+    print(response)
+    return response
 
 
-print(response)
-
-
-while(message != "end"):
-    message = input()
+def general_questions(message):
     response = co.chat(
         message,
         temperature = 0.9,
-        chat_history = chat_history
+        chat_history = chat_history,
+        
     )
     response = response.text
     print(response, "\n")
 
     user_message = {"user_name": "User", "text": message}
-    bot_message = {"user_name": "Chabot", "text": response}
+    bot_message = {"user_name": "Chatbot", "text": response}
     
     chat_history.append(user_message)
     chat_history.append(bot_message)
 
+    print(response)
+    return response
 
 
+emotion_message("happy")
