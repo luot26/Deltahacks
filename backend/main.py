@@ -48,7 +48,7 @@ def CVLoop():
     cap = cv2.VideoCapture(0) #number of webcam being used, 0 = first cam (only one we have)
     old_time=time.time()
     new_time=time.time()
-    while new_time-old_time<60:
+    while new_time-old_time<20:
         ret, frame = cap.read() #returns the frame (image in form of num py array), ret tells us if it worked
         emotes= emotion_capture(frame) # capture the emotion displayed in the frame
 
@@ -62,6 +62,3 @@ def CVLoop():
 
     cap.release # release the camera resource
     cv2.destroyAllWindows()
-
-
-CVLoop()

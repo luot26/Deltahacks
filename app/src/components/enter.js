@@ -1,11 +1,11 @@
-document.addEventListener('DOMContentLoaded', () => {
+/*document.addEventListener('DOMContentLoaded', () => {
     const chatForm = document.getElementById('chatForm');
 
     chatForm.addEventListener('submit', (event) => {
         event.preventDefault(); // Prevent the default form submission behavior
         submitForm();
     });
-});
+});*/
 
 async function submitForm() {
 
