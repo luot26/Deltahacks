@@ -37,3 +37,5 @@ cv2.destroyAllWindows()
 
 if os.path.isdir('images'):
     shutil.rmtree('images')
+
+emotion = "happy"
