@@ -31,4 +31,4 @@ while True:
 
 cap.release # release the camera resource
 cv2.destroyAllWindows()
-
+ 
