@@ -37,7 +37,6 @@ def emotion_message(emotion):
     chat_history.append(user_message)
     chat_history.append(bot_message)
     
-    print(response)
     return response
 
 
@@ -56,8 +55,6 @@ def general_questions(message):
     
     chat_history.append(user_message)
     chat_history.append(bot_message)
-
-    print(response)
     return response
 
 
