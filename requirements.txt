@@ -1,0 +1,8 @@
+#requirements.txt
+cohere==4.42
+python-dotenv==1.0.0
+numpy==1.26.3
+opencv-contrib-python==4.9.0.80
+opencv-python==4.9.0.80
+deepface== 0.0.81
+matplotlib==3.8.2
